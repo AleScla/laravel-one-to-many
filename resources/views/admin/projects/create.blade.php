@@ -68,16 +68,7 @@
             value="{{old('starting_date')}}"
             id="starting_date">
         </div>
-        <div class="mb-3">
-            <label for="type" class="form-label">Tipo di progetto</label>
-            <select id="type" name="type" class="form-select" aria-label="Default select example">
-                <option class="d-none" disabled selected>Scegli un tipo di progetto</option>
-                <option value="front-end">Front-end</option>
-                <option value="back-end">Back-end</option>
-                <option value="full-stack">Full-Stack</option>
-                <option value="Altro">Altro</option>
-            </select>
-        </div>
+
         <div class="mb-3">
             <label for="level" class="form-label">Livello del programmatore</label>
             <select id="level" name="level" class="form-select" aria-label="Default select example">
