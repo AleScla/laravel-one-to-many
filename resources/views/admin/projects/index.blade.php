@@ -13,6 +13,8 @@
                     <th scope="col">Titolo progetto</th>
                     <th scope="col">Completato</th>
                     <th scope="col">Linguaggi</th>
+                    <th scope="col">Tipo</th>
+
                     <th class="text-center" scope="col">Azioni</th>
                   </tr>
                 </thead>
@@ -27,6 +29,8 @@
                         <td class="text-danger">In sviluppo</td>
                         @endif
                         <td>{{$project->languages}}</td>
+                        {{-- ucfirst rende la prima lettera di ogni tipo maiuscola --}}
+                        <td>{{ucfirst($project->type->name)}}</td>
                         <td class="d-flex justify-content-around">
                             <a href="{{route('admin.projects.show', ['project'=> $project->id])}}" class="btn btn-primary">
                                 Più dettagli

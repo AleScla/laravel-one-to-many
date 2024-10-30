@@ -54,7 +54,7 @@
         </div>
         <div class="mb-3">
             <label for="completed" class="form-label">Stato del progetto</label>
-            <select id="completed" name="completed" class="form-select" aria-label="Default select example">
+            <select id="completed" name="completed" class="form-select">
                 <option class="d-none" disabled selected>Seleziona lo stato del progetto</option>
                 <option value="0">In lavorazione</option>
                 <option value="1">Completato</option>
@@ -71,11 +71,20 @@
 
         <div class="mb-3">
             <label for="level" class="form-label">Livello del programmatore</label>
-            <select id="level" name="level" class="form-select" aria-label="Default select example">
+            <select id="level" name="level" class="form-select">
                 <option class="d-none" disabled selected>Scegli il livello di esperienza del programmatore</option>
                 <option value="junior">Principiante</option>
                 <option value="experienced">Con esperienza</option>
                 <option value="senior">Senior</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="type_id" class="form-label">Tipo di progetto</label>
+            <select id="type_id" name="type_id" class="form-select">
+                <option class="d-none" disabled selected>Scegli il tipo di progetto</option>
+                @foreach ($types as $type)
+                <option value="{{$type->id}}">{{ucfirst($type->name)}}</option>
+                @endforeach
             </select>
         </div>
         <button type="submit" class="btn btn-primary">

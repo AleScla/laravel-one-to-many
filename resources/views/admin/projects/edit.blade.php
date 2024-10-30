@@ -16,6 +16,7 @@
         </div>
     @endif
 
+
     <form action="{{route('admin.projects.update', ['project' => $project->id])}}" method="POST">
         @method('PUT')
         @csrf
@@ -71,29 +72,15 @@
             id="starting_date">
         </div>
         <div class="mb-3">
-            <label for="type" class="form-label">Tipo di progetto</label>
-            <select id="type" name="type" class="form-select" aria-label="Default select example">
-
-                <option
-                @if ($project->type == 'front-end')
-                selected
-                @endif
-                value="front-end">Front-end</option>
-                <option
-                @if ($project->type == 'back-end')
-                selected
-                @endif
-                value="back-end">Back-end</option>
-                <option
-                @if ($project->type == 'full-stack')
-                selected
-                @endif
-                value="full-stack">Full-Stack</option>
-                <option
-                @if ($project->type !=  'front-end'||$project->type !=  'back-end'||$project->type !=  'full-stack' )
-                selected
-                @endif
-                value="Altro">Altro</option>
+            <label for="type_id" class="form-label">Tipo di progetto</label>
+            <select id="type_id" name="type_id" class="form-select">
+                @foreach ($types as $type)
+                    <option
+                    @if (old('type_id') == $type->id)
+                        selected
+                    @endif
+                    value="{{$type->id}}">{{ucfirst($type->name)}}</option>
+                @endforeach
             </select>
         </div>
         <div class="mb-3">

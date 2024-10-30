@@ -34,9 +34,9 @@
                 <p class="card-text">
                     Iniziato il: {{$project->starting_date}}
                 </p>
-                {{-- <p class="card-text">
-                    Tipo di progetto: {{$project->type}}
-                </p> --}}
+                <p class="card-text">
+                    Tipo di progetto: {{ucfirst($project->type->name)}}
+                </p>
                 <p class="card-text">
                     Livello programmatore:
                     @if ($project->level == 'junior')

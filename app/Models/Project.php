@@ -14,7 +14,11 @@ class Project extends Model
         'languages',
         'completed',
         'starting_date',
-        'type',
-        'level'
+        'level',
+        'type_id'
     ];
+    // relationship
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
 }

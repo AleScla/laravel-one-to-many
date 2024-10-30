@@ -24,7 +24,7 @@ class ProjectSeeder extends Seeder
                 'completed' =>fake()->boolean(70),
                 'starting_date' =>fake()->dateTimeBetween('-1 week', '+1 week'),
                 'level'=>fake()->word(),
-                'type_id'=> $randomType,
+                'type_id'=> $randomType->id,
             ]);
         }
     }

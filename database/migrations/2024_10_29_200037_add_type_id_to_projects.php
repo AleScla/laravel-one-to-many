@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-
+            if(Schema::hasColumn('projects', 'type')){
+                $table->dropColumn('type');
+            }
             $table->unsignedBigInteger('type_id')->nullable();
             $table->foreign('type_id')->references('id')->on('types');
         });
@@ -24,9 +26,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            if(Schema::hasColumn('projects', 'type')){
-                $table->dropColumn('type');
-            }
+
             if(Schema::hasColumn('projects', 'type_id')){
                 $table->dropForeign('projects_type_id_foreign');
                 $table->dropColumn('type_id');

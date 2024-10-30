@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
+use App\Models\Type;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,7 +24,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -30,15 +33,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'title'=>'required|min:3|max:64',
             'description'=>'required|min:3|max:1024',
             'languages'=>'required|min:3|max:64',
             'completed'=>'required|integer|min:0|max:1',
             'starting_date'=> 'nullable|date',
-            'type'=>'nullable|min:3|max:64',
             'level'=>'nullable|min:3|max:64',
+            'type_id'=>'nullable|exists:types,id',
+
         ]);
         $data = $request->all();
         $project = Project::Create($data);
@@ -59,7 +63,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -67,18 +72,18 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        dd($request);
+
         $request->validate([
             'title'=>'required|min:3|max:64',
             'description'=>'required|min:3|max:1024',
             'languages'=>'required|min:3|max:64',
             'completed'=>'required|integer|min:0|max:1',
             'starting_date'=> 'nullable|date',
-            'type'=>'nullable|min:3|max:64',
             'level'=>'nullable|min:3|max:64',
+            'type_id'=>'nullable|exists:types,id'
         ]);
         $data = $request->all();
-        $project = Project::Create($data);
+        $project->update($data);
         return redirect()->route('admin.projects.show', ['project' => $project->id]);
     }
 
